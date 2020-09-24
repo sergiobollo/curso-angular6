@@ -48,7 +48,7 @@ export class FormDestinoViajeComponent implements OnInit {
   guardar(nombre: string, url: string): boolean {
     let d = new DestinoViaje(nombre, url);
     this.onItemAdded.emit(d);
-    return false
+    return false;
   }
 
   urlValidator(control: FormControl):{[s:string]: boolean} {
