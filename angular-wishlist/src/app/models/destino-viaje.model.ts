@@ -1,19 +1,28 @@
 import {v4 as uuid} from 'uuid';
 
 export class DestinoViaje{
- private selected: boolean;
- public servicios: string[];
+ selected: boolean;
+ servicios: string[];
  id = uuid();
 
- constructor(public nombre: string, public u: string){ 
-     this.servicios = ["pileta", "desayuno"];
- }
- isSelected(): boolean {
-  return this.selected;
+ constructor(public nombre: string, public u: string, public votes: number = 0) {
+     this.servicios = ['pileta', 'desayuno'];
  }
  setSelected(s: boolean){
   this.selected = s;
  }
+ isSelected(): boolean {
+  return this.selected;
+ }
+ voteUp() {
+   this.votes++;
+ }
+ voteDown() {
+  this.votes--;
+}
+voteReset() {
+  this.votes = 0;
+}
 }
 
 /*export class DestinoViaje {
@@ -22,7 +31,7 @@ imagenUrl: string;
 
 constructor(n: string, u: string) {
     this.nombre = n;
-    this.imagenUrl = u;    
+    this.imagenUrl = u;
 }
 
 }*/
