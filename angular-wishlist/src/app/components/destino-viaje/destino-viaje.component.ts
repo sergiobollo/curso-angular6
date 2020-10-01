@@ -1,8 +1,8 @@
-import { VoteDownAction, VoteResetAction, VoteUpAction } from './../models/destinos-viajes-state.models';
+import { VoteDownAction, VoteResetAction, VoteUpAction } from '../../models/destinos-viajes-state.models';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, Input, HostBinding, EventEmitter, Output } from '@angular/core';
-import { DestinoViaje } from '../models/destino-viaje.model';
-import { AppState } from '../app.module';
+import { DestinoViaje } from '../../models/destino-viaje.model';
+import { AppState } from '../../app.module';
 
 @Component({
   selector: 'app-destino-viaje',
@@ -11,8 +11,8 @@ import { AppState } from '../app.module';
 })
 export class DestinoViajeComponent implements OnInit {
   @Input() destino: DestinoViaje;
-  @Input("idx") position: number;
-  @HostBinding("attr.class") cssClass = "col-md-4";
+  @Input('idx') position: number;
+  @HostBinding('attr.class') cssClass = 'col-md-4';
   @Output() clicked: EventEmitter<DestinoViaje>;
   constructor(private store: Store<AppState>) {
     this.clicked = new EventEmitter();
