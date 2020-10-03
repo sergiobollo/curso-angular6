@@ -1,13 +1,30 @@
-import { VoteDownAction, VoteResetAction, VoteUpAction } from '../../models/destinos-viajes-state.models';
+import { VoteDownAction, VoteResetAction, VoteUpAction } from '../../models/destinos-viajes-state.model';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, Input, HostBinding, EventEmitter, Output } from '@angular/core';
 import { DestinoViaje } from '../../models/destino-viaje.model';
 import { AppState } from '../../app.module';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-destino-viaje',
   templateUrl: './destino-viaje.component.html',
-  styleUrls: ['./destino-viaje.component.css']
+  styleUrls: ['./destino-viaje.component.css'],
+  animations: [
+    trigger('esFavorito', [
+      state('estadoFavorito', style({
+        backgroundColor: 'PaleTurquoise'
+      })),
+      state('estadoNoFavorito', style({
+        backgroundColor: 'WhiteSmoke'
+      })),
+      transition('estadoNoFavorito => estadoFavorito', [
+        animate('3s')
+      ]),
+      transition('estadoFavorito => estadoNoFavorito', [
+        animate('1s')
+      ]),
+    ])
+  ]
 })
 export class DestinoViajeComponent implements OnInit {
   @Input() destino: DestinoViaje;

@@ -43,10 +43,42 @@ class DestinosApiClientDecorated extends DestinosApiClient {
     //{provide: APP_CONFIG, useValue: APP_CONFIG_VALUE},
     {provide: DestinosApiClient, useClass: DestinosApiClientDecorated},
     {provide: DestinosApiClientViejo, useExisting: DestinosApiClient}
-  ]
+  ],
+  template: `
+  <mgl-map
+    [style]="style"
+    [zoom]="[2]"
+  >
+  </mgl-map>
+  `,
+  styles: [`
+mgl-map {
+height: 75vh;
+width: 75vw;
+}
+
+`]
 })
 export class DestinoDetalleComponent implements OnInit {
   destino: DestinoViaje;
+  style = {
+    sources: {
+      world: {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json'
+      }
+    },
+    version: 8,
+    layers: [{
+      id: 'countries',
+      type: 'fill',
+      source: 'world',
+      layout: {},
+      paint: {
+        'fill-color': '#6F788A'
+      }
+    }]
+  };
 
   constructor(private route: ActivatedRoute, private destinosApiClient: DestinosApiClientViejo) { }
 
@@ -54,5 +86,4 @@ export class DestinoDetalleComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.destino = this.destinosApiClient.getById(id);
   }
-
 }

@@ -13,9 +13,10 @@ import { FormDestinoViajeComponent } from './components/form-destino-viaje/form-
 import {HttpClient, HttpClientModule, HttpHeaders, HttpRequest} from '@angular/common/http';
 import Dexie from 'dexie';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-import { DestinosViajesState, initializeDestinosViajesState, reducerDestinosViajes, DestinosViajesEffects, InitMyDataAction } from './models/destinos-viajes-state.models';
+import { DestinosViajesState, initializeDestinosViajesState, reducerDestinosViajes, DestinosViajesEffects, InitMyDataAction } from './models/destinos-viajes-state.model';
 import { ActionReducerMap, Store, StoreModule as NgRxStoreModule } from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -29,6 +30,8 @@ import { ReservasModule } from './reservas/reservas.module';
 import { DestinoViaje } from './models/destino-viaje.model';
 import { flatMap, map } from 'rxjs/operators';
 import { from, Observable } from 'rxjs';
+import { EspiameDirective } from './espiame.directive';
+import { TrackearClickDirective } from './trackear-click.directive';
 
 // app config
 export interface AppConfig {
@@ -175,6 +178,8 @@ function HttpLoaderFactory(http: HttpClient) {
     VuelosMainComponent,
     VuelosMasInfoComponent,
     VuelosDetalleComponent,
+    EspiameDirective,
+    TrackearClickDirective,
   ],
   imports: [
     BrowserModule,
@@ -198,7 +203,9 @@ function HttpLoaderFactory(http: HttpClient) {
           useFactory: (HttpLoaderFactory),
           deps: [HttpClient]
       }
-    })
+    }),
+    NgxMapboxGLModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService, UsuarioLogueadoGuard,

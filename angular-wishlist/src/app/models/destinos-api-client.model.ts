@@ -1,6 +1,6 @@
 import {DestinoViaje} from './destino-viaje.model';
 import {Subject, BehaviorSubject } from 'rxjs';
-import { ElegidoFavoritoAction, NuevoDestinoAction } from './../models/destinos-viajes-state.models';
+import { ElegidoFavoritoAction, NuevoDestinoAction } from './destinos-viajes-state.model';
 import { Store } from '@ngrx/store';
 import { AppConfig, AppState, APP_CONFIG, db } from '../app.module';
 import { Inject, Injectable, forwardRef } from '@angular/core';
